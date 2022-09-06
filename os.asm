@@ -1,0 +1,92 @@
+	.ORIG x0100
+
+ 
+	TRAP xFF
+	LDI R3,STA1
+	ADD R5,R3,#-1
+	BRz RUN1
+	BRnp TER1
+	
+TER1	AND R3,R3,#0
+	STI R3,STA1
+	LDI R3,STA2
+	ADD R5,R3,#-1
+	BRz RUN2
+	BRnp TER2
+	
+TER2	AND R3,R3,#0
+	STI R3,STA2
+	LDI R3,STA3
+        ADD R5,R3,#-1
+        BRz RUN3
+        BRnp TER3
+        
+TER3	AND R3,R3,#0
+	STI R3,STA3
+	LDI R3,STA4
+        ADD R5,R3,#-1
+        BRz RUN4
+        BRnp TER4
+        
+TER4	AND R3,R3,#0
+	STI R3,STA4
+	LDI R3,STA5
+        ADD R5,R3,#-1
+        BRz RUN5
+        BRp TER5
+        BRn LOOP2
+        
+TER5    AND R3,R3,#0
+	STI R3,STA5
+	TRAP x25
+LOOP2
+	BR LOOP2
+
+RUN1	AND R3,R3,#0
+	ADD R3,R3,#2
+	STI R3,STA1
+	LD R4,P1
+	TRAP xFF
+	JMP R4
+
+RUN2	AND R3,R3,#0
+	ADD R3,R3,#2
+	STI R3,STA2
+	LD R4,P2
+	TRAP xFF
+	JMP R4
+
+RUN3    AND R3,R3,#0
+        ADD R3,R3,#2
+        STI R3,STA3
+        LD R4,P3
+        TRAP xFF
+        JMP R4
+
+RUN4    AND R3,R3,#0
+        ADD R3,R3,#2
+        STI R3,STA4
+        LD R4,P4
+        TRAP xFF
+        JMP R4
+
+RUN5    AND R3,R3,#0
+        ADD R3,R3,#2
+        STI R3,STA5
+        LD R4,P5
+        TRAP xFF
+        JMP R4
+P1	.FILL x4000
+P2	.FILL x5000
+P3	.FILL x6000
+P4	.FILL x7000
+P5	.FILL x8000
+STA1	.FILL x0200
+STA2	.FILL x0201
+STA3	.FILL x0202
+STA4	.FILL x0203
+STA5	.FILL x0204
+	.END
+
+
+

@@ -1,0 +1,7 @@
+  	.ORIG x7000
+VALUE4	.FILL #4
+
+	LD R1,VALUE4
+
+	TRAP x25
+	.END
